@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b22a1db0-9423-479f-bb38-89389a60afcb" name="Changes" comment="fixed edge cases- exit still non functional" />
+    <list default="true" id="b22a1db0-9423-479f-bb38-89389a60afcb" name="Changes" comment="fixed edge cases- exit still non functional">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Raphis-GitHub&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Raphis-GitHub/IPv4_Python_Chat.git&quot;,
+    &quot;accountId&quot;: &quot;6e99f8cc-aef7-4c8f-a9e7-144cb1b17e7d&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -119,6 +135,9 @@
       <workItem from="1733044444677" duration="7000" />
       <workItem from="1733057742540" duration="369000" />
       <workItem from="1733059104492" duration="9465000" />
+      <workItem from="1733222247820" duration="1008000" />
+      <workItem from="1733327850038" duration="2677000" />
+      <workItem from="1733491004342" duration="1148000" />
     </task>
     <task id="LOCAL-00001" summary="fixed edge cases- exit still non functionl">
       <option name="closed" value="true" />
@@ -136,11 +155,30 @@
       <option name="project" value="LOCAL" />
       <updated>1733222212819</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed edge cases- exit still non functional">
+      <option name="closed" value="true" />
+      <created>1733222265849</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733222265849</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed edge cases- exit still non functionl" />

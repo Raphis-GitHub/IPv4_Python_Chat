@@ -6,6 +6,7 @@ SERVER_PORT = 8888
 SERVER_IP = "0.0.0.0"
 
 block_list = {}
+messages_to_send = []
 
 
 def block(blocker, blockee):
@@ -33,7 +34,7 @@ def blockCheck(sender, sendee):
         return 0
 
 
-def handle_client_request(current_socket, clients_names, data):
+def handle_client_request(current_socket, clients_names, data,):
     # Strip any leading/trailing whitespace
     data = data.strip()
 
@@ -69,18 +70,43 @@ def handle_client_request(current_socket, clients_names, data):
         names = ", ".join(clients_names.values())
         return names, current_socket
 
-    elif command == "MSG":
-        # Ensure message format is correct
+
+    elif command == "MSG" and len(data.split(' ')) > 2:
+
         parts = data.split(' ', 2)
-        if len(parts) < 3:
-            return "ERROR: Incorrect MSG format. Use MSG <name> <message>", current_socket
 
         target_name = parts[1]
+
         message = parts[2]
 
         # Check if sender has a name
+
         if current_socket not in clients_names:
             return "ERROR: Set your name first", current_socket
+
+        sender_name = clients_names[current_socket]
+
+        if target_name == "broadcast":
+
+            for sock, name in clients_names.items():
+
+                # Skip sender
+
+                if sock == current_socket:
+                    continue
+
+                # Check if the recipient has blocked the sender
+
+                if sender_name in block_list.get(name, []):
+                    continue
+
+                # Add the message to be sent to this recipient
+
+                messages_to_send.append((sock, f"{sender_name} broadcasted: {message}"))
+
+            return "Message broadcasted to all unblocked clients", current_socket
+
+        # Handle regular direct messaging (MSG <name> <message>)
 
         # Find recipient socket
         recipient_socket = None
@@ -125,7 +151,10 @@ def handle_client_request(current_socket, clients_names, data):
         return "User blocked", current_socket
 
     elif command == "EXIT":
-        return "", None
+        # Remove the client's name from clients_names
+        if current_socket in clients_names:
+            del clients_names[current_socket]
+        return "", None  # Signal to close the connection
 
     else:
         return "ERROR: Unknown command", current_socket
@@ -143,7 +172,6 @@ def main():
     print("Listening for clients")
     server_socket.listen()
     client_sockets = []
-    messages_to_send = []
     clients_names = {}
     while True:
         read_list = client_sockets + [server_socket]
@@ -159,15 +187,20 @@ def main():
                 data = protocol.get_message(current_socket)
                 if data == "":
                     print("Connection closed\n")
-                    for entry in clients_names.keys():
-                        if clients_names[entry] == current_socket:
-                            sender_name = entry
-                    clients_names.pop(sender_name)
+                    if current_socket in clients_names:
+                        del clients_names[current_socket]
                     client_sockets.remove(current_socket)
                     current_socket.close()
                 else:
                     print(data)
                     (response, dest_socket) = handle_client_request(current_socket, clients_names, data)
+
+                    # Handle graceful disconnection
+                    if dest_socket is None:
+                        client_sockets.remove(current_socket)
+                        current_socket.close()
+                        continue
+
                     messages_to_send.append((dest_socket, response))
 
         # write to everyone (note: only ones which are free to read...)
