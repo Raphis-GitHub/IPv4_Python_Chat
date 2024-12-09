@@ -29,7 +29,7 @@ while msg != "EXIT":
     if msvcrt.kbhit():
         # get the character that was pressed
         ch = msvcrt.getch()
-        # if the key pressed is a special key we'll catch it's prefix and ignore the following key
+        # if the key pressed is a special key we'll catch its prefix and ignore the following key
         # special key functionality could be added in the future
         if ch in SPECIAL_KEYS:
             msvcrt.getch()

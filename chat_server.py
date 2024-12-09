@@ -59,6 +59,9 @@ def handle_client_request(current_socket, clients_names, data,):
         if name in clients_names.values():
             return "ERROR: Name already in use", current_socket
 
+        if name == 'BROADCAST':
+            return "ERROR: Name CANT be equal to broadcast", current_socket
+
         clients_names[current_socket] = name
         return f"HELLO {name}", current_socket
 
@@ -183,25 +186,38 @@ def main():
                 client_sockets.append(client_socket)
                 print_client_sockets(client_sockets)
             else:
-                print("Data from client\n")
-                data = protocol.get_message(current_socket)
-                if data == "":
-                    print("Connection closed\n")
-                    if current_socket in clients_names:
-                        del clients_names[current_socket]
-                    client_sockets.remove(current_socket)
-                    current_socket.close()
-                else:
-                    print(data)
-                    (response, dest_socket) = handle_client_request(current_socket, clients_names, data)
-
-                    # Handle graceful disconnection
-                    if dest_socket is None:
+                try:
+                    print("Data from client\n")
+                    data = protocol.get_message(current_socket)
+                    if data == "":
+                        # Handle client disconnection
+                        print("Connection closed by client\n")
+                        if current_socket in clients_names:
+                            del clients_names[current_socket]
                         client_sockets.remove(current_socket)
                         current_socket.close()
-                        continue
+                    else:
+                        print(data)
+                        (response, dest_socket) = handle_client_request(current_socket, clients_names, data)
 
-                    messages_to_send.append((dest_socket, response))
+                        # Handle graceful disconnection
+                        if dest_socket is None:
+                            if current_socket in client_sockets:
+                                client_sockets.remove(current_socket)
+                            current_socket.close()
+                            continue
+
+                        messages_to_send.append((dest_socket, response))
+                except (ConnectionResetError, ConnectionAbortedError):
+                    # Handle forceful disconnection
+                    print("Client forcefully disconnected\n")
+                    if current_socket in clients_names:
+                        del clients_names[current_socket]
+                    if current_socket in client_sockets:
+                        client_sockets.remove(current_socket)
+                    current_socket.close()
+                except Exception as e:
+                    print(f"Unexpected error: {e}")
 
         # write to everyone (note: only ones which are free to read...)
         for message in messages_to_send:

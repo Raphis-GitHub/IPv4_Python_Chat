@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b22a1db0-9423-479f-bb38-89389a60afcb" name="Changes" comment="fixed edge cases- exit still non functional">
+    <list default="true" id="b22a1db0-9423-479f-bb38-89389a60afcb" name="Changes" comment="fixed all edge cases, fixed EXit command and added a MSG broadcast &lt;maessage&gt; command... final commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chat_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/protocol.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,9 @@
       <workItem from="1733059104492" duration="9465000" />
       <workItem from="1733222247820" duration="1008000" />
       <workItem from="1733327850038" duration="2677000" />
-      <workItem from="1733491004342" duration="1148000" />
+      <workItem from="1733491004342" duration="1364000" />
+      <workItem from="1733756325535" duration="4000" />
+      <workItem from="1733776165774" duration="1012000" />
     </task>
     <task id="LOCAL-00001" summary="fixed edge cases- exit still non functionl">
       <option name="closed" value="true" />
@@ -163,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733222265849</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed all edge cases, fixed EXit command and added a MSG broadcast &lt;maessage&gt; command... final commit">
+      <option name="closed" value="true" />
+      <created>1733594763995</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733594763995</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +193,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed edge cases- exit still non functionl" />
     <MESSAGE value="fixed edge cases- exit still non functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed edge cases- exit still non functional" />
+    <MESSAGE value="fixed all edge cases, fixed EXit command and added a MSG broadcast &lt;maessage&gt; command... final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed all edge cases, fixed EXit command and added a MSG broadcast &lt;maessage&gt; command... final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
